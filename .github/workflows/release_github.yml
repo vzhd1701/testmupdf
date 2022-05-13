@@ -49,6 +49,7 @@ jobs:
 
   release:
     if: github.event_name == 'push' || github.event.inputs.release == 'yes'
+    needs: [build_python]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
