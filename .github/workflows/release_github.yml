@@ -41,12 +41,6 @@ jobs:
       - name: Build project for distribution
         run: poetry build
 
-      - name: Save release python requirements
-        uses: actions/upload-artifact@v2
-        with:
-          name: release_dist_reqs
-          path: requirements.txt
-
       - name: Save release python packages
         uses: actions/upload-artifact@v2
         with:
@@ -55,7 +49,6 @@ jobs:
 
   release:
     if: github.event_name == 'push' || github.event.inputs.release == 'yes'
-    needs: [build_binaries]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
